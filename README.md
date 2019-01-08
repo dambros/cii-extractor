@@ -22,5 +22,6 @@ No arquivo ```config.py``` é possível definir todas as infos necessárias para
 | ------------- |:-------------:|
 | ```DH_FOLDER_PATH```      | Caminho do diretório contendo os documentos de tipo DH |
 | ```CIOP_FOLDER_PATH```     | Caminho do diretório contendo os documentos de tipo CIOP      |
+| ```XML_FOLDER_PATH``` | Caminho onde serão salvos os xmls após execução do script      |
 | ```SUMMARY_PATH``` | Caminho onde serão salvos o resumo da execução do script. Caso vazio, não serão gerado resumos      |
 
