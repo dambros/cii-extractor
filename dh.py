@@ -9,7 +9,8 @@ ENCODING = 'utf-8'
 FILENAME_PATTERN = r'^.*Relat[oó]rio\s\d+.*\.(doc|docx)$'
 NUM_RELATORIO_PATTERN = r'RELATÓRIO\sNº\s(\d+\/\d+)'
 DATA_PATTERN = r'(\d{1,2}\/\d{1,2}\/\d{1,2})'
-HORARIO_ACIONAMENTO_PATTERN = r'(\d{1,2}hs?\d{1,2}m?i?n?s?|\d{1,2}:\d{1,2}:?\d{1,2})'
+HORARIO_ACIONAMENTO_PATTERN = r'Da\s+chegada\s+ao\s+local.*?(\d{1,2}hs?\d{1,2}m?i?n?s?|\d{1,2}:\d{1,2}:?\d{1,2}|\d{1,2}hs?)'
+HORARIO_CHEGADA_PATTERN = r'((\d{1,2}hs?\d{1,2}m?i?n?s?|\d{1,2}:\d{1,2}:?\d{1,2}|\d{1,2}hs?).*?)?(\d{1,2}hs?\d{1,2}m?i?n?s?|\d{1,2}:\d{1,2}:?\d{1,2}|\d{1,2}hs?).*?II\s–\sDO\sFATO:'
 ENDERECO_PATTERN = r'Endereço do fato:\s(\(.*?\))?(.*?)Circunscrição Policial'
 COLETAS_VESTIGIOS_PATTERN = r'Vest[ií]gios.*apreendidos\?\s(\(.*?\))(.*?)Objetos.*criminosa'
 ARMAS_PATTERN = r'Tipos\sde\s\s(.*?)Armas:'
@@ -27,8 +28,8 @@ def extract_info(file_path):
         'data_acionamento': utils.match_regex(DATA_PATTERN, text),
         'horario_acionamento': utils.match_regex(HORARIO_ACIONAMENTO_PATTERN,
                                                  text),
-        'horario_chegada': utils.match_regex(HORARIO_ACIONAMENTO_PATTERN,
-                                             text, 1),
+        'horario_chegada': utils.match_regex(HORARIO_CHEGADA_PATTERN, text,
+                                             tuple_pos=2),
         'endereco': utils.match_regex(ENDERECO_PATTERN, text, tuple_pos=1),
         'coletas_vestigios': utils.match_regex(COLETAS_VESTIGIOS_PATTERN,
                                                text,

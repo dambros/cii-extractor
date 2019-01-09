@@ -15,7 +15,7 @@ Report = Enum('Report', 'ciop dh')
 
 def main():
     if shutil.which('textract') is None:
-        sys.exit('Textract is missing!')
+        sys.exit('Textract not found, halting execution...')
 
     dh_metadata = get_metadata(config.DH_FOLDER_PATH, Report.dh)
     ciop_metadata = get_metadata(config.CIOP_FOLDER_PATH, Report.ciop)
@@ -43,7 +43,7 @@ def get_metadata(folder_path, file_type):
     for file in files:
         try:
             metadata.append(report_type.extract_info(file))
-        except Exception:
+        except Exception as e:
             logger.error(file)
 
     return metadata
